@@ -27,7 +27,7 @@ df['Month'] = df['date'].dt.month
 
 
 # Create a Streamlit app
-st.title("Football Match Analysis")
+st.title("Number of Matches")
 
 # Widgets for year range selection
 year_start, year_end = st.slider("Select Year Range", min_value=1920, max_value=2022, value=(2015, 2022))
@@ -85,7 +85,7 @@ st.pyplot(plt)
 
 
 
-st.title('History of matches')
+st.title('Head-to-head Matches')
 
 col1, col2 = st.columns(2)
 
@@ -261,7 +261,7 @@ st.pyplot(plt)
 
 
 
-st.title("Football Match Analysis")
+st.title("FIFA ranking ")
 
 
 def determine_result(row):
@@ -347,7 +347,7 @@ st.pyplot(fig)
 
 
 
-st.header("kde plot")
+st.header("Distribution of opponent rankings")
 gss=rs
 home_data = gss[['home_team', 'RankDiff', 'Result','neutral','date']]
 home_data.columns = ['team', 'Rankdiff', 'Result','neutral','date']
@@ -389,7 +389,7 @@ st.pyplot(fig)
 
 
 
-st.header("box plot")
+st.header("Distribution of opponent rankings")
 fig, ax = plt.subplots(figsize=(8, 8))
 sns.boxplot(data=new_data,x="Result", y="Rankdiff", hue="neutral",order=['Win','Draw','Loss'],hue_order=['Home','Neutral','Away'],palette=cupa3)
 plt.legend(loc="lower left", ncol=len(new_data.columns))
@@ -444,17 +444,17 @@ import matplotlib.pyplot as plt
 # Replace 'your_data.csv' with the actual path or URL to your data file
 data = ran
 
-st.title("Scatterplot Visualization")
+st.title("Scatterplot for Countires")
 
 # Select columns for x and y axes
-x_column = st.selectbox("Select X-Axis Column", data.columns.drop(['Country', 'confederation']))
-y_column = st.selectbox("Select Y-Axis Column", data.columns.drop(['Country', 'confederation']))
+x_column = st.selectbox("Select X-Axis Column", data.columns.drop(['Country', 'confederation']),index=2)
+y_column = st.selectbox("Select Y-Axis Column", data.columns.drop(['Country', 'confederation']),index=1)
 
 # Add logarithmic scale options
-log_x = st.checkbox("Logarithmic X-Axis", value=False)
+log_x = st.checkbox("Logarithmic X-Axis", value=True)
 log_y = st.checkbox("Logarithmic Y-Axis", value=False)
 
-selected_confederations = st.multiselect("Select Confederations", data['confederation'].unique())
+selected_confederations = st.multiselect("Select Confederations", data['confederation'].unique(),default=['UEFA','AFC'])
 filtered_data = data[data['confederation'].isin(selected_confederations)]
 
 
