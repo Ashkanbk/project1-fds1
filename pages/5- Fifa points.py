@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
 
-st.image("header.JPG", use_column_width="always")
+st.image("FFF.jpg", use_column_width="always")
 
 ra=pd.read_csv('fifa.csv')
 rs=pd.read_csv('results.csv')
@@ -165,30 +165,6 @@ st.pyplot(fig)
 
 
 
-
-
-# Sample DataFrame with date column
-
-
-ran=pd.read_csv('./Data/fifa2021.csv')
-GDP1=pd.read_csv('./Data/GDP1.csv')
-GDP2=pd.read_csv('./Data/GDP2.csv')
-HDI=pd.read_csv('./Data/HDI.csv')
-pop=pd.read_csv('./Data/pop.csv')
-ran=ran[['rank','country_full','total_points','confederation']]
-GDP1=GDP1[['Country or Area','Value']]
-GDP2=GDP2[['Country or Area','Value']]
-HDI=HDI[['Country','Value']]
-pop=pop[['Country (or dependency)','Population (2020)']]
-ran = ran.rename(columns={'country_full': 'Country','total_points' : 'FIFA_Points','rank' : 'FIFA_Rank'})
-GDP1 = GDP1.rename(columns={'Country or Area': 'Country','Value' : 'GDP_per_capita'})
-GDP2 = GDP2.rename(columns={'Country or Area': 'Country','Value' : 'GDP_gross'})
-HDI = HDI.rename(columns={'Value' : 'HDI'})
-pop = pop.rename(columns={'Country (or dependency)': 'Country','Population (2020)' : 'Population'})
-ran = ran.merge(GDP1, on='Country')
-ran = ran.merge(GDP2, on='Country')
-ran = ran.merge(HDI, on='Country')
-ran = ran.merge(pop, on='Country')
 
 
 
