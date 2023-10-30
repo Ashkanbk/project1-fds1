@@ -155,6 +155,11 @@ st.pyplot(fig)
 
 
 
+st.header("Distribution of opponent rankings")
+fig, ax = plt.subplots(figsize=(8, 8))
+sns.violinplot(data=new_data,x="Result", y="Rankdiff", hue="neutral",order=['Win','Draw','Loss'],hue_order=['Home','Neutral','Away'],palette=cupa3)
+plt.legend(loc="lower left", ncol=len(new_data.columns))
+st.pyplot(fig)
 
 
 
