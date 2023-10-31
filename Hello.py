@@ -1,5 +1,16 @@
 import streamlit as st
 
+
+
+
+st.set_page_config(
+    page_title="FDS Project",
+    page_icon="⚽",
+)
+
+
+
+
 st.image("H1.jpg", use_column_width="always")
 st.title('Introduction')
 
@@ -8,3 +19,9 @@ st.write('Football, often referred to as the "beautiful game", transcends geogra
 
 
 st.write("This project delves into the fascinating world of national football matches, leveraging data analysis to uncover hidden insights, trends, and patterns within the results of these contests. My objective is to extract meaningful information from the vast sea of statistics, exploring the factors that influence match outcomes, and shedding light on the complex dynamics that underlie the world's most popular sport.")
+
+
+st.write("**Start to explore different sections of this app, from the sidebar**")
+
+st.write("Ashkan Bagherzadeh - [(bagherza@msu.edu)](bagherza@msu.edu) - Fall 2023")
+

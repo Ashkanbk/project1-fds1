@@ -3,23 +3,39 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
+from PIL import Image
 
 st.image("FFF.jpg", use_column_width="always")
 
 ra=pd.read_csv('fifa.csv')
 rs=pd.read_csv('results.csv')
-gs=pd.read_csv('goalscorers.csv')
-conlist=sorted(list(rs['home_team'].unique()))
-
-
-
-
 
 
 
 
 
 st.title("FIFA ranking ")
+
+st.write("The **FIFA ranking** system is a pivotal index in international football, assessing team strength through a point-based algorithm. Teams earn or lose points based on match results and opponent strength. These rankings, announced monthly, offer a numerical representation of a team's global standing, with **higher** rankings indicating **stronger** teams. They influence key factors like tournament seeding, shaping the competitive landscape of international football.")
+
+data = {
+    'Rank': ['1', '2', '3', '4', '5'],
+    'Team': ['Argentina', 'France', 'Brazil', 'England', 'Belguim'],
+    'Points': [1861.29, 1853.11, 1812.20, 1807.88, 1793.71],
+    'Pervious Points': [1851.41, 1840.76, 1837.61, 1794.34, 1792.64],
+    '+/-': [9.88, 12.35 , -25.41 , 13.54 , 1.07],
+}
+
+rrrr = pd.DataFrame(data)
+rrrr = rrrr.reset_index(drop=True)
+
+# Display the table in Streamlit
+st.dataframe(rrrr)
+
+
+
+st.title("Scatter plot of rankings ")
+st.write("The **FIFA ranking** system is a pivotal index in international football, assessing team strength through a point-based algorithm. Teams earn or lose points based on match results and opponent strength. These rankings, announced monthly, offer a numerical representation of a team's global standing, with **higher** rankings indicating **stronger** teams. They influence key factors like tournament seeding, shaping the competitive landscape of international football.")
 
 
 def determine_result(row):
@@ -82,7 +98,6 @@ filtered_data = filtered_data.sample(sample_size)
 
 
 # Create and display the scatter plot
-st.header("Scatter Plot")
 sns.set(style="whitegrid")
 fig, ax = plt.subplots(figsize=(8, 8))
 x = [1, 200]
@@ -102,10 +117,14 @@ ax.set_aspect('equal')
 
 st.pyplot(fig)
 
+st.write("The **FIFA ranking** system is a pivotal index in international football, assessing team strength through a point-based algorithm. Teams earn or lose points based on match results and opponent strength. These rankings, announced monthly, offer a numerical representation of a team's global standing, with **higher** rankings indicating **stronger** teams. They influence key factors like tournament seeding, shaping the competitive landscape of international football.")
 
 
 
-st.header("Distribution of opponent rankings")
+st.title("Rank difference ")
+st.write("The **FIFA ranking** system is a pivotal index in international football, assessing team strength through a point-based algorithm. Teams earn or lose points based on match results and opponent strength. These rankings, announced monthly, offer a numerical representation of a team's global standing, with **higher** rankings indicating **stronger** teams. They influence key factors like tournament seeding, shaping the competitive landscape of international football.")
+st.write("box plot or violin plot Interpretations of above in average")
+
 gss=rs
 home_data = gss[['home_team', 'RankDiff', 'Result','neutral','date']]
 home_data.columns = ['team', 'Rankdiff', 'Result','neutral','date']
@@ -144,22 +163,21 @@ sns.kdeplot(data=filtered_data, x="Rankdiff",hue="Result",palette=cupa2,ax=ax,fi
 
 st.pyplot(fig)
 
-
-
-
-st.header("Distribution of opponent rankings")
+st.write("The **FIFA ranking** system is a pivotal index in international football, assessing team strength through a point-based algorithm. Teams earn or lose points based on match results and opponent strength. These rankings, announced monthly, offer a numerical representation of a team's global standing, with **higher** rankings indicating **stronger** teams. They influence key factors like tournament seeding, shaping the competitive landscape of international football.")
+st.write("box plot or violin plot Interpretations of above in average")
+plot_type = st.radio("Select Plot Type", ["Violin Plot", "Box Plot"])
 fig, ax = plt.subplots(figsize=(8, 8))
-sns.boxplot(data=new_data,x="Result", y="Rankdiff", hue="neutral",order=['Win','Draw','Loss'],hue_order=['Home','Neutral','Away'],palette=cupa3)
-plt.legend(loc="lower left", ncol=len(new_data.columns))
-st.pyplot(fig)
+
+if plot_type == "Box Plot":
+    sns.boxplot(data=new_data,x="Result", y="Rankdiff", hue="neutral",order=['Win','Draw','Loss'],hue_order=['Home','Neutral','Away'],palette=cupa3)
+    plt.legend(loc="lower left", ncol=len(new_data.columns))
+    st.pyplot(fig)
 
 
-
-st.header("Distribution of opponent rankings")
-fig, ax = plt.subplots(figsize=(8, 8))
-sns.violinplot(data=new_data,x="Result", y="Rankdiff", hue="neutral",order=['Win','Draw','Loss'],hue_order=['Home','Neutral','Away'],palette=cupa3)
-plt.legend(loc="lower left", ncol=len(new_data.columns))
-st.pyplot(fig)
+if plot_type == "Violin Plot":
+    sns.violinplot(data=new_data,x="Result", y="Rankdiff", hue="neutral",order=['Win','Draw','Loss'],hue_order=['Home','Neutral','Away'],palette=cupa3)
+    plt.legend(loc="lower left", ncol=len(new_data.columns))
+    st.pyplot(fig)
 
 
 

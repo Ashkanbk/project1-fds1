@@ -80,6 +80,3 @@ if show_data3:
     st.dataframe(ran)
 
 
-
-
-
