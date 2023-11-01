@@ -35,7 +35,7 @@ st.dataframe(rrrr)
 
 
 st.title("Scatter plot of rankings ")
-st.write("The **FIFA ranking** system is a pivotal index in international football, assessing team strength through a point-based algorithm. Teams earn or lose points based on match results and opponent strength. These rankings, announced monthly, offer a numerical representation of a team's global standing, with **higher** rankings indicating **stronger** teams. They influence key factors like tournament seeding, shaping the competitive landscape of international football.")
+st.write("In this specific scatter plot, away teams are plotted against home teams, and the teams with lower-ranking numbers are considered stronger. The plot features a y=x line that divides the domain into **two distinct regions**. Points in the upper part of the plot indicate that a team playing at home is competing against a weaker team, and conversely in the lower part. When data points cluster closer to the y=x dashed line, it signifies that the teams are more evenly matched. To further dissect the results, the data is categorized by the outcome of the **host team**, whether they lost, won, or drew. Given the extensive number of data points, a **random sample** is plotted for better visualization, and the plot's size is adjustable")
 
 
 def determine_result(row):
@@ -116,14 +116,10 @@ ax.legend(title="Result")
 ax.set_aspect('equal')
 
 st.pyplot(fig)
+st.write("It shows that for wins and losses, the plot exhibits a distinct inclination, with wins **tending to cluster** in the upper half, indicating a **higher likelihood** of winning against weaker opponents, and losses leaning towards the lower half, suggesting vulnerability against stronger teams. However, in the case of **draws**, the distribution is **symmetric**, signifying a more even outcome regardless of team strength. Notably, when considering only neutral matches, data points are **closely aligned** to the y=x line, indicating balanced contests. In contrast, for non-neutral matches, the points are more widely **dispersed**, emphasizing the significant impact of match location on team performance.")
 
-st.write("The **FIFA ranking** system is a pivotal index in international football, assessing team strength through a point-based algorithm. Teams earn or lose points based on match results and opponent strength. These rankings, announced monthly, offer a numerical representation of a team's global standing, with **higher** rankings indicating **stronger** teams. They influence key factors like tournament seeding, shaping the competitive landscape of international football.")
-
-
-
-st.title("Rank difference ")
-st.write("The **FIFA ranking** system is a pivotal index in international football, assessing team strength through a point-based algorithm. Teams earn or lose points based on match results and opponent strength. These rankings, announced monthly, offer a numerical representation of a team's global standing, with **higher** rankings indicating **stronger** teams. They influence key factors like tournament seeding, shaping the competitive landscape of international football.")
-st.write("box plot or violin plot Interpretations of above in average")
+st.title("Ranking difference ")
+st.write("In this section, our focus was on introducing a means of measuring and comparing the strength of two opposing teams by calculating the **ranking difference**. I aimed to determine which team held the **ranking advantage** and how this advantage influenced match outcomes. The results, depicted in the figure below, illustrate the density distribution of ranking differences for various match contexts, including home games, away games, and neutral ground.")
 
 gss=rs
 home_data = gss[['home_team', 'RankDiff', 'Result','neutral','date']]
@@ -163,8 +159,8 @@ sns.kdeplot(data=filtered_data, x="Rankdiff",hue="Result",palette=cupa2,ax=ax,fi
 
 st.pyplot(fig)
 
-st.write("The **FIFA ranking** system is a pivotal index in international football, assessing team strength through a point-based algorithm. Teams earn or lose points based on match results and opponent strength. These rankings, announced monthly, offer a numerical representation of a team's global standing, with **higher** rankings indicating **stronger** teams. They influence key factors like tournament seeding, shaping the competitive landscape of international football.")
-st.write("box plot or violin plot Interpretations of above in average")
+st.write("Notably, the figure reveals a trend: when a team has a **ranking advantage** and plays on their home, the **probability** of winning the game significantly **increases**. This emphasizes the significance of both team strength and the home advantage in determining match outcomes. Additionally, the **symmetric distribution** of ranking differences for draws stands out as an interesting observation, suggesting that the ranking difference **alone might not be as influential** in games ending in a draw, and other factors come into play in such cases.")
+st.write("Box plots and violin plots are alternative visual representations thae above plot effectively illustrate data distributions, with box plots highlighting summary statistics")
 plot_type = st.radio("Select Plot Type", ["Violin Plot", "Box Plot"])
 fig, ax = plt.subplots(figsize=(8, 8))
 
